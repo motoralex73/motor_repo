@@ -1,5 +1,7 @@
 package java_collection;
 
+import java.util.*;
+
 public class StudyCollection {
 
 //1.обобщенные типы данных
@@ -214,6 +216,120 @@ public static void func4() {
     B.display();
 }
 
+//5.Коллекции
+//Collection - интефейсы. Collections, Arrays - классы, описывают методы для коллекций, такие как sort() и т.д.
+static void studyCollection() {
+    Collection collection = new ArrayList();
+    collection.add("1");
+    collection.add("2");
+    collection.add("3");
+    collection.remove("2");
+    Iterator iterator = collection.iterator();
+    while (iterator.hasNext()) System.out.print(" "+iterator.next()); System.out.println(";");
+    for (Object o : collection) System.out.print(" "+o); System.out.println(";");
+
+    List l1 = new ArrayList(); //список на основе индексов
+    Set s1 = new HashSet();    //множество
+    Queue q1 = new PriorityQueue(); //очередь FIFO, LIFO (стек)
+    Map m1 = new HashMap();    //коллекция ключ-значение
+
+    l1.add("1");
+    l1.add(collection);
+    l1.add(1,"2");
+    l1.set(1,"3");
+    System.out.println(l1);
+
+    q1.offer(5);
+    q1.offer(6);
+    Iterator i = q1.iterator();
+    //poll - перебирает и удаляет, peek - не удаляет.
+    while (i.hasNext()) System.out.println(q1.poll());
+    System.out.println("count element = "+q1.size());
+    //set - добавляет только НЕ повторяющиеся объекты
+    //map
+    m1.put("one",1);
+    System.out.println("map = "+m1.get("one"));
+//коллекции упорядоченные(LinkedHashSet) и неупорядочные(HashSet), отсортированные
+}
+
+//6. Сортировка коллекций
+static public void sortCollection() {
+    Set s1 = new TreeSet();//отсортированный
+    s1.add("2");
+    s1.add("5");
+    s1.add("3");
+    s1.add("3");
+    for (Object o : s1) System.out.print(o+" "); System.out.println();
+    Set s2 = new TreeSet();
+    s2.add(new Person(4));
+    s2.add(new Person(1));
+    s2.add(new Person(7));
+    for (Object o : s2) System.out.println(o+" ");
+}
+
+static class Person implements Comparable<Person> {
+        //наследуем интерфейс Comparable для сортировки по возрасту
+        int age;
+        public Person(int age) {
+            this.age = age;
+        }
+        @Override
+        public int compareTo(Person o) {
+            return this.age - o.age;
+        }
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "age=" + age +
+                    '}';
+        }
+}
+
+//7. List - списки
+public static void studyList() {
+    List list1 = new ArrayList(); //работает на основании массива, DEFAULT_CAPACITY=10,size=0. Быстрый.
+    List list2 = new Vector(); //копия ArrayList, но синхронизированный
+    List list3 = new LinkedList();//наследует очереди, двунаправленный список, добавляет вначало или в конец, хранит информацию Node,
+    // т.е. ссылками на следующий и предыдущий элементы (next, prev). Хорош для очередей, когда постоянной что-то удаляется-добаляется в список.
+    for (int i=0;i<3;i++) {list1.add(5); System.out.print(list1.get(i)+" ");}
+}
+
+//8. Queue - очереди (кью)
+public static void studyQueue() {
+    Queue queue1 = new LinkedList(); //FIFO
+    Queue queue2 = new PriorityQueue(); //отсортированная очередь. 3-2-1 отсортирует как 1-2-3,
+    //сортировка происходит каждый раз при добавлении нового элемента
+    for (int i=0;i<10;i++) queue1.add(i);
+    while (queue1.size() > 0) System.out.print(queue1.poll()+" "); System.out.println();
+    //пример сортировки
+    List l = (List)queue1;
+    Collections.sort(l);
+}
+
+//9. Map - коллекции по типу ключ-значение
+public static void studyMap() {
+    Map map1 = new HashMap(); //хранит свои объекты на основании хэша (в определенной ячейке памяти)
+    Map map2 = new Hashtable(); //как HashMap, только синхронизированный
+    Map map3 = new LinkedHashMap(); //гарантирует сохранения порядка элементов коллекции (так как добавлялось в коллекцию)
+    Map map4 = new TreeMap(); //отсортированный список, сортируется по алгоритму red-black
+    map1.put(1,"one");
+    map1.put(3,"three");
+    map1.put(2,"two");
+    System.out.println(map1.get(3));
+    Set set = map1.entrySet();
+    for (Object o : set) System.out.println(o);
+}
+
+//10. Set - множества
+public static void studySet() {
+    Set set1 = new HashSet(); //устроен на основе HashMap, значения не повторяются
+    Set set2 = new LinkedHashSet();
+    Set set3 = new TreeSet();
+    set1.add(2); set1.add(1); set1.add(1); set1.add(2);
+    for (Object o : set1) System.out.println(o);
+}
+
+
 static public void main(String[] args) {
 //1.обобщенные типы данных
     //func1();
@@ -222,7 +338,17 @@ static public void main(String[] args) {
 //3.обобщенный интерфейс
     //func3();
 //4.ограничения на обобщенные параметры
-    func4();
+    //func4();
+//5.коллекции
+    //studyCollection();
+//6.сортировка коллекций
+    //sortCollection();
+//7. list список
+    studyList();
+//8.queue очереди
+    //studyQueue();
+//9.map - ключ-значение
+    //studyMap();
 
 }//main
 
