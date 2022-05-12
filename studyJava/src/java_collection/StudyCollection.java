@@ -1,10 +1,12 @@
 package java_collection;
 
+import jdk.dynalink.beans.StaticClass;
+
 import java.util.*;
 
 public class StudyCollection {
 
-//1.обобщенные типы данных
+//1.обобщенные типы данных (Generics)
 static class ClassAllStaticMethod {
     int code;
 
@@ -290,7 +292,7 @@ public static void studyList() {
     List list1 = new ArrayList(); //работает на основании массива, DEFAULT_CAPACITY=10,size=0. Быстрый.
     List list2 = new Vector(); //копия ArrayList, но синхронизированный
     List list3 = new LinkedList();//наследует очереди, двунаправленный список, добавляет вначало или в конец, хранит информацию Node,
-    // т.е. ссылками на следующий и предыдущий элементы (next, prev). Хорош для очередей, когда постоянной что-то удаляется-добаляется в список.
+    // т.е. ссылками на следующий и предыдущий элементы (next, prev). Хорош для очередей, когда постоянно что-то удаляется-добаляется в список.
     for (int i=0;i<3;i++) {list1.add(5); System.out.print(list1.get(i)+" ");}
 }
 
@@ -329,8 +331,30 @@ public static void studySet() {
     for (Object o : set1) System.out.println(o);
 }
 
+//11. Inner-классы (внутренние классы)
+private int ppp=123;
+class Inner{
+    private int k = 10;
+    void show() {
+        System.out.println(ppp);
+    } //внутренние классы имеют доступ к переменным внешнего класса, даже приватным
+}
+void method() {
+    Inner inner = new Inner();
+    inner.show();
+}
+void innerMethod() {
+    class NewInner {
+        void show() {
+            System.out.println("Hello class into the method");
+        }
+    }
+    NewInner newInner = new NewInner();
+    newInner.show();
+}
 
-static public void main(String[] args) {
+
+public static void main(String[] args) {
 //1.обобщенные типы данных
     //func1();
 //2.обобщенный суперкласс
@@ -343,16 +367,21 @@ static public void main(String[] args) {
     //studyCollection();
 //6.сортировка коллекций
     //sortCollection();
-//7. list список
-    studyList();
+//7.list список
+    //studyList();
 //8.queue очереди
     //studyQueue();
 //9.map - ключ-значение
-    //studyMap();
-
+    studyMap();
+//10.Inner-классы (внутренние классы)
+    //StudyCollection studyCollection = new StudyCollection();
+    //studyCollection.method();
+    //Inner inner = new Inner();
+    //inner.show();
+    //innerMethod();
 }//main
 
-}
+}//class StdyCollection
 
 
 
