@@ -1,11 +1,13 @@
 package motoralex.catalizator.domain;
 
-public class Mesage {
+public class Message {
     private String data;
+
+    public Message(String data) {
+        this.data = data;
+    }
+
     public String getData() {
         return data;
-    }
-    public Mesage(String data) {
-        this.data = data;
     }
 }
