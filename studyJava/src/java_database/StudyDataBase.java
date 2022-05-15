@@ -54,9 +54,20 @@ public class StudyDataBase {
         }
     }
 
+    public static void ab() {
+        int a = 111;
+        int b = 222;
+        System.out.println("after a = "+a+" b = "+b);
+        a = a + b;
+        b = a - b;
+        a = a - b;
+        System.out.println("before a = "+a+" b = "+b);
+    }
+
     public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException, SAXException, ParserConfigurationException {
         //createTableBooks();
-        studyInjection();
+        //studyInjection();
+        ab();
     }
 
 
