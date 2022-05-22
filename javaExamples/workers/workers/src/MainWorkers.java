@@ -1,5 +1,7 @@
 import many_workers.*;
 
+import java.util.Date;
+
 public class MainWorkers {
     public static void main(String[] args) {
         Proger proger = new Proger("Vasiy",23,"Python");
@@ -13,5 +15,10 @@ public class MainWorkers {
         System.out.println("Company: "+company);
         ITCompany company2 = new ITCompany("Rostelecom",100);
         System.out.println(company.equals(company2));
+
+        //Runtime runtime = Runtime.getRuntime();
+        Date date = new Date();
+        System.out.println(date);
+        System.gc();
     }
 }
